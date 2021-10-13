@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1060494823451",
+    "project_id": "homehunt-6d12d",
+    "storage_bucket": "homehunt-6d12d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060494823451:android:6e35d720e894a2745ce8be",
+        "android_client_info": {
+          "package_name": "com.example.homehunt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060494823451-b0nko8vr9ms38pt9jlnrndltajmhv8l9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.homehunt",
+            "certificate_hash": "3b62b939a43f8f3558b68d83a9748c5523ef9a3b"
+          }
+        },
+        {
+          "client_id": "1060494823451-9bqal1bi7kgkimfvqlkqf4g9ssnoqchm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6QVAgU_16jK69sUmKctijAw8O9JMw8Jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060494823451-9bqal1bi7kgkimfvqlkqf4g9ssnoqchm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
