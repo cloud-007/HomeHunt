@@ -42,6 +42,7 @@ dependencies:
   path_provider: ^2.0.5
   multi_image_picker: ^4.7.14
   uuid: ^3.0.5
+  connectivity: ^3.0.6
 
 dev_dependencies:
   flutter_test:

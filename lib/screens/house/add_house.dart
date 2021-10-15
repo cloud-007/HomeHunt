@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_print, prefer_final_fields
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:homehunt/screens/house/image_picker.dart';
 import 'package:homehunt/widgets/circular_indicator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
@@ -330,6 +328,7 @@ class _AddHouseState extends State<AddHouse> {
         'imageUrl': imageUrl,
         'phoneNumber': phoneNumber,
         'uid': FirebaseAuth.instance.currentUser.uid,
+        'username': FirebaseAuth.instance.currentUser.displayName,
       });
 
       ScaffoldMessenger.of(context).showSnackBar(

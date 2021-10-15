@@ -47,6 +47,13 @@ class HouseCarousel extends StatelessWidget {
                 child: Image.network(
                   house.imageUrl,
                   fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace stackTrace) {
+                    return Image(
+                      image: AssetImage('assets/images/networkerror.jpg'),
+                      fit: BoxFit.cover,
+                    );
+                  },
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent loadingProgress) {
                     if (loadingProgress == null) return child;

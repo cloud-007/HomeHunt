@@ -3,9 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:homehunt/screens/house/add_house.dart';
-import 'package:homehunt/model/house.dart';
 import 'package:homehunt/widgets/HomeScreen/list_view.dart';
-import 'package:homehunt/widgets/housecarousel.dart';
+import 'package:homehunt/widgets/HomeScreen/housecarousel.dart';
 
 class HomeScreen extends StatefulWidget {
   static String pageRoute = '/home-screen';

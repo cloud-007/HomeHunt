@@ -77,6 +77,7 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
         'email': widget._email,
         'password': widget._password,
         'imageUrl': url,
+        'uid': FirebaseAuth.instance.currentUser.uid,
       });
       await Future.delayed(const Duration(seconds: 5), () {});
       setState(() {

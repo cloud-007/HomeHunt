@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:homehunt/model/house.dart';
 import 'package:homehunt/screens/house/house_details.dart';
 import 'package:homehunt/widgets/circular_indicator.dart';
-import 'package:homehunt/widgets/housecarousel.dart';
+import 'package:homehunt/widgets/HomeScreen/housecarousel.dart';
 
 class HomeScreenListView extends StatefulWidget {
-  final _selectedIndex;
-  HomeScreenListView(this._selectedIndex, {key}) : super(key: key);
+  final int _selectedIndex;
+  const HomeScreenListView(this._selectedIndex, {key}) : super(key: key);
 
   @override
   State<HomeScreenListView> createState() => _HomeScreenListViewState();
@@ -68,6 +68,8 @@ class _HomeScreenListViewState extends State<HomeScreenListView> {
                       chatDocs[index]['bathrooms'],
                       chatDocs[index]['phoneNumber'],
                       chatDocs[index].id,
+                      chatDocs[index]['uid'],
+                      chatDocs[index]['username'],
                     ),
                   ),
                 );

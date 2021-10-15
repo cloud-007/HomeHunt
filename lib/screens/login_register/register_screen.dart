@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:homehunt/screens/login_register/login_screen.dart';
 import 'package:homehunt/widgets/app_name.dart';
-import 'package:homehunt/widgets/auth/veryfy_new.dart';
+import 'package:homehunt/screens/login_register/verify.dart';
 import 'package:homehunt/widgets/circular_indicator.dart';
 import 'package:homehunt/widgets/image_picker/auth_image_picker.dart';
 
