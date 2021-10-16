@@ -18,12 +18,13 @@ class _AllChatScreenState extends State<AllChatScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-        toolbarHeight: _height * 0.07,
+        backgroundColor: Theme.of(context).backgroundColor,
+        shadowColor: Theme.of(context).primaryColor,
+        elevation: 10,
+        toolbarHeight: _height * 0.06,
         titleTextStyle: TextStyle(
           color: Colors.black,
           fontSize: _height * 0.025,
-          fontFamily: 'Crete_Round',
           letterSpacing: _height * 0.001,
         ),
         title: const Text(

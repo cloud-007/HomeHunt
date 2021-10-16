@@ -30,11 +30,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
-        primaryColor: Colors.grey.shade200,
-        backgroundColor: Colors.white,
-        primaryColorDark: Colors.black87,
+        primaryColor: Colors.lightBlue.shade800,
+        backgroundColor: Colors.lightBlue.shade900,
+        primaryColorDark: Colors.white,
         errorColor: Colors.red,
-        fontFamily: "Crete_Round",
+        fontFamily: "Montserrat-ExtraLight",
       ),
       home: FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser.emailVerified

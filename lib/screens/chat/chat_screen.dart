@@ -49,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       IconButton(
                         icon: Icon(Icons.arrow_back_ios),
-                        color: Colors.black,
+                        color: Theme.of(context).primaryColorDark,
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -63,7 +63,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       Text(
                         widget.username,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).primaryColorDark,
                           fontSize: _height * 0.025,
                         ),
                       ),

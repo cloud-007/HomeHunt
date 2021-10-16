@@ -211,6 +211,7 @@ class _HouseDetailState extends State<HouseDetail> {
                             Text(
                               widget.apartmentType,
                               style: TextStyle(
+                                color: Theme.of(context).primaryColorDark,
                                 fontSize: _height * 0.03,
                               ),
                             ),
@@ -228,14 +229,14 @@ class _HouseDetailState extends State<HouseDetail> {
                           children: [
                             Icon(
                               Icons.location_on_outlined,
-                              color: Colors.black54,
+                              color: Theme.of(context).primaryColorDark,
                             ),
                             SizedBox(width: _width * 0.02),
                             Text(
                               widget.location,
                               style: TextStyle(
                                 fontSize: _height * 0.02,
-                                color: Colors.black54,
+                                color: Theme.of(context).primaryColorDark,
                               ),
                             ),
                           ],
@@ -245,13 +246,16 @@ class _HouseDetailState extends State<HouseDetail> {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.bed_outlined, color: Colors.black54),
+                                Icon(
+                                  Icons.bed_outlined,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
                                 SizedBox(width: _width * 0.02),
                                 Text(
                                   widget.bedroom.toString() + ' Beds',
                                   style: TextStyle(
                                     fontSize: _height * 0.02,
-                                    color: Colors.black54,
+                                    color: Theme.of(context).primaryColorDark,
                                   ),
                                 ),
                               ],
@@ -259,14 +263,16 @@ class _HouseDetailState extends State<HouseDetail> {
                             SizedBox(width: _width * 0.1),
                             Row(
                               children: [
-                                Icon(Icons.bathtub_outlined,
-                                    color: Colors.black54),
+                                Icon(
+                                  Icons.bathtub_outlined,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
                                 SizedBox(width: _width * 0.02),
                                 Text(
                                   widget.bathroom.toString() + ' Baths',
                                   style: TextStyle(
                                     fontSize: _height * 0.02,
-                                    color: Colors.black54,
+                                    color: Theme.of(context).primaryColorDark,
                                   ),
                                 ),
                               ],
@@ -274,14 +280,16 @@ class _HouseDetailState extends State<HouseDetail> {
                             SizedBox(width: _width * 0.1),
                             Row(
                               children: [
-                                Icon(Icons.house_outlined,
-                                    color: Colors.black54),
+                                Icon(
+                                  Icons.house_outlined,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
                                 SizedBox(width: _width * 0.02),
                                 Text(
                                   widget.type + ' House',
                                   style: TextStyle(
                                     fontSize: _height * 0.02,
-                                    color: Colors.black54,
+                                    color: Theme.of(context).primaryColorDark,
                                   ),
                                 ),
                               ],
@@ -291,7 +299,10 @@ class _HouseDetailState extends State<HouseDetail> {
                         SizedBox(height: _height * 0.02),
                         Text(
                           'Description',
-                          style: TextStyle(fontSize: _height * 0.025),
+                          style: TextStyle(
+                            fontSize: _height * 0.025,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
                         SizedBox(height: _height * 0.01),
                         Container(
@@ -317,7 +328,7 @@ class _HouseDetailState extends State<HouseDetail> {
                               ' Lorem Ipsum. ',
                               style: TextStyle(
                                 fontSize: _height * 0.02,
-                                color: Colors.black54,
+                                color: Theme.of(context).primaryColorDark,
                                 overflow: TextOverflow.visible,
                               ),
                             ),

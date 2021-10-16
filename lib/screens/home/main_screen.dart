@@ -26,21 +26,29 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pageList[pageIndex],
-      bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.08,
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height * 0.07,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).primaryColor,
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.grey.shade300,
-          //elevation: 10,
+          backgroundColor: Colors.lightBlue.shade900,
           selectedItemColor: Theme.of(context).primaryColorDark,
-          selectedFontSize: MediaQuery.of(context).size.height * 0.015,
+          selectedFontSize: MediaQuery.of(context).size.height * 0.013,
           currentIndex: pageIndex,
           selectedLabelStyle: TextStyle(
-            //fontFamily: "RobotoSlab",
             fontWeight: FontWeight.bold,
           ),
-          unselectedFontSize: MediaQuery.of(context).size.height * 0.013,
-          unselectedItemColor: Colors.black45,
+          unselectedFontSize: MediaQuery.of(context).size.height * 0.011,
+          unselectedItemColor: Colors.white54,
           onTap: (value) {
             setState(() {
               pageIndex = value;
@@ -50,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 pageIndex == 0 ? Icons.explore_sharp : Icons.explore_outlined,
-                size: MediaQuery.of(context).size.height * 0.03,
+                size: MediaQuery.of(context).size.height * 0.025,
               ),
               label: 'Discover',
             ),
@@ -59,14 +67,14 @@ class _MainScreenState extends State<MainScreen> {
                 pageIndex == 1
                     ? Icons.chat_bubble
                     : Icons.chat_bubble_outline_outlined,
-                size: MediaQuery.of(context).size.height * 0.03,
+                size: MediaQuery.of(context).size.height * 0.025,
               ),
               label: 'Chat',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 pageIndex == 2 ? Icons.favorite : Icons.favorite_border,
-                size: MediaQuery.of(context).size.height * 0.03,
+                size: MediaQuery.of(context).size.height * 0.025,
               ),
               label: 'Favorites',
             ),

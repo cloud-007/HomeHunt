@@ -106,13 +106,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ///placing the widget on by one
                 children: <Widget>[
                   AppName(),
-                  SizedBox(height: _height * 0.07),
-                  SizedBox(height: _height * 0.07),
+                  SizedBox(height: _height * 0.14),
 
                   ///email field
                   TextFormField(
                     cursorColor: Theme.of(context).primaryColorDark,
-                    cursorHeight: _height * 0.025,
+                    cursorHeight: _height * 0.022,
                     controller: _emailController,
                     key: ValueKey('email'),
                     validator: (value) {
@@ -136,13 +135,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Email',
                       labelStyle: TextStyle(
                         color: Theme.of(context).primaryColorDark,
-                        fontSize: _height * 0.02,
+                        fontSize: _height * 0.018,
                         letterSpacing: 1.2,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                          color: Theme.of(context).primaryColorDark,
+                          color: Theme.of(context).backgroundColor,
                           width: 0.0,
                         ),
                       ),
@@ -152,13 +151,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                          color: Colors.green,
+                          color: Theme.of(context).backgroundColor,
                         ),
                       ),
                     ),
                     style: TextStyle(
                       color: Theme.of(context).primaryColorDark,
-                      fontSize: _height * 0.02,
+                      fontSize: _height * 0.018,
                       letterSpacing: 1.2,
                     ),
                     onChanged: (value) {
@@ -169,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
 
-                  SizedBox(height: _height * 0.03),
+                  SizedBox(height: _height * 0.01),
 
                   ///password field for both login and signup
                   TextFormField(
@@ -196,13 +195,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Password',
                       labelStyle: TextStyle(
                         color: Theme.of(context).primaryColorDark,
-                        fontSize: _height * 0.02,
+                        fontSize: _height * 0.018,
                         letterSpacing: 1.2,
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                          color: Theme.of(context).primaryColorDark,
+                          color: Theme.of(context).backgroundColor,
                           width: 0.0,
                         ),
                       ),
@@ -212,13 +211,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                          color: Colors.green,
+                          color: Theme.of(context).backgroundColor,
                         ),
                       ),
                     ),
                     style: TextStyle(
                       color: Theme.of(context).primaryColorDark,
-                      fontSize: _height * 0.02,
+                      fontSize: _height * 0.018,
                       letterSpacing: 1.2,
                     ),
                     onChanged: (value) {
@@ -228,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _password = value;
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.012),
+                  SizedBox(height: _height * 0.012),
                   if (isWrongPassword)
                     Padding(
                       padding: EdgeInsets.only(right: _width * 0.005),
@@ -257,21 +256,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     ),
-                  SizedBox(height: _height * 0.012),
+                  SizedBox(height: _height * 0.01),
                   if (isLoading) CircularIndicator(),
                   if (!isLoading)
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Colors.lightGreen.shade100,
+                        color: Colors.blue.shade500,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.green.shade900,
-                          width: 0.50,
-                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.3),
                             spreadRadius: 5,
                             blurRadius: 7,
                             offset: Offset(0, 3), // changes position of shadow
@@ -283,9 +279,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           'Login',
                           style: TextStyle(
-                            color: Colors.green.shade700,
-                            fontSize: _height * 0.035,
-                            letterSpacing: 1.5,
+                            color: Theme.of(context).primaryColorDark,
+                            fontSize: _height * 0.02,
+                            letterSpacing: 1,
                           ),
                         ),
                       ),
@@ -297,8 +293,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'New User? ',
                           style: TextStyle(
-                            fontSize: _width * 0.037,
-                            color: Colors.blueGrey,
+                            fontSize: _height * 0.017,
+                            color: Colors.grey,
                             letterSpacing: 1.0,
                           ),
                         ),
@@ -306,8 +302,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Register Now!',
                           style: TextStyle(
-                            fontSize: _width * 0.037,
-                            color: Colors.green,
+                            fontSize: _height * 0.017,
+                            color: Theme.of(context).primaryColorDark,
                             letterSpacing: 1.0,
                           ),
                         ),

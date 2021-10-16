@@ -120,13 +120,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                     labelText: 'Email',
                     labelStyle: TextStyle(
                       color: Theme.of(context).primaryColorDark,
-                      fontSize: _height * 0.02,
+                      fontSize: _height * 0.018,
                       letterSpacing: 1.2,
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme.of(context).backgroundColor,
                         width: 0.0,
                       ),
                     ),
@@ -136,13 +136,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: Colors.green,
+                        color: Theme.of(context).backgroundColor,
                       ),
                     ),
                   ),
                   style: TextStyle(
                     color: Theme.of(context).primaryColorDark,
-                    fontSize: _height * 0.02,
+                    fontSize: _height * 0.018,
                     letterSpacing: 1.2,
                   ),
                   onChanged: (value) {
@@ -167,15 +167,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.lightGreen.shade100,
+                      color: Colors.blue.shade500,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Colors.green.shade900,
-                        width: 0.50,
-                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.3),
                           spreadRadius: 5,
                           blurRadius: 7,
                           offset: Offset(0, 3), // changes position of shadow
@@ -187,19 +184,23 @@ class _ResetPasswordState extends State<ResetPassword> {
                       child: Text(
                         'Request Change',
                         style: TextStyle(
-                          color: Colors.green.shade700,
-                          fontSize: _width * 0.07,
-                          letterSpacing: 1.5,
+                          color: Theme.of(context).primaryColorDark,
+                          fontSize: _height * 0.02,
+                          letterSpacing: 1,
                         ),
                       ),
                     ),
                   ),
                 TextButton(
-                  child: Text('Remember your password?',
-                      style: TextStyle(
-                        fontSize: _width * 0.037,
-                        color: Colors.green,
-                      )),
+                  child: Text(
+                    'Remember your password?',
+                    style: TextStyle(
+                      fontSize: _height * 0.017,
+                      fontFamily: 'Montserrat-ExtraLight',
+                      color: Theme.of(context).primaryColorDark,
+                      letterSpacing: 1,
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,

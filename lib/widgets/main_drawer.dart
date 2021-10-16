@@ -14,7 +14,7 @@ class MainDrawer extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-          fontFamily: 'Crete_Round',
+          fontFamily: 'Montserrat',
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),

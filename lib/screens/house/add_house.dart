@@ -47,85 +47,92 @@ class _AddHouseState extends State<AddHouse> {
       height: _height * 0.025,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(_height * 0.015),
-        border: Border.all(
-          color: Theme.of(context).primaryColorDark,
-          width: 0.0,
-        ),
+        borderRadius: BorderRadius.circular(_height * 0.012),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: _width * 0.03),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            borderRadius: BorderRadius.circular(_height * 0.015),
-            hint: Text(
-              name == 'House Type'
-                  ? (hintType == false ? "Select " + name : type)
-                  : name == 'Location'
-                      ? (hintLocation == false ? "Select " + name : location)
-                      : name == 'No of bedrooms'
-                          ? (hintBedroom == false
-                              ? "Select " + name
-                              : bedroom.toString())
-                          : name == 'No of bathrooms'
-                              ? (hintBathroom == false
-                                  ? "Select " + name
-                                  : bathrooms.toString())
-                              : (hintApartment == false
-                                  ? "Select " + name
-                                  : apartmentType),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Theme.of(context).primaryColor,
+            ),
+            child: DropdownButton<String>(
+              borderRadius: BorderRadius.circular(_height * 0.012),
+              hint: Text(
+                name == 'House Type'
+                    ? (hintType == false ? "Select " + name : type)
+                    : name == 'Location'
+                        ? (hintLocation == false ? "Select " + name : location)
+                        : name == 'No of bedrooms'
+                            ? (hintBedroom == false
+                                ? "Select " + name
+                                : bedroom.toString())
+                            : name == 'No of bathrooms'
+                                ? (hintBathroom == false
+                                    ? "Select " + name
+                                    : bathrooms.toString())
+                                : (hintApartment == false
+                                    ? "Select " + name
+                                    : apartmentType),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColorDark,
+                  fontSize: _height * 0.015,
+                  letterSpacing: 1.2,
+                  fontFamily: 'Montserrat-ExtraLight',
+                ),
+              ),
+              key: ValueKey(name),
+              items: _list.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColorDark,
+                      fontSize: _height * 0.015,
+                      fontFamily: 'Montserrat-ExtraLight',
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                if (name == 'House Type') {
+                  setState(() {
+                    type = value;
+                    hintType = true;
+                  });
+                } else if (name == 'No of bedrooms') {
+                  setState(() {
+                    bedroom = int.parse(value);
+                    hintBedroom = true;
+                  });
+                  print(bedroom);
+                } else if (name == 'Location') {
+                  setState(() {
+                    location = value;
+                    hintLocation = true;
+                  });
+                  print(location);
+                } else if (name == 'No of bathrooms') {
+                  setState(() {
+                    bathrooms = int.parse(value);
+                    hintBathroom = true;
+                  });
+                  print('Bathrooms = ' + bathrooms.toString());
+                } else {
+                  setState(() {
+                    apartmentType = value;
+                    hintApartment = true;
+                  });
+                }
+              },
               style: TextStyle(
                 color: Theme.of(context).primaryColorDark,
                 fontSize: _height * 0.015,
                 letterSpacing: 1.2,
-                fontFamily: 'Crete_Round',
+                fontFamily: 'Montserrat',
               ),
-            ),
-            key: ValueKey(name),
-            items: _list.map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                ),
-              );
-            }).toList(),
-            onChanged: (value) {
-              if (name == 'House Type') {
-                setState(() {
-                  type = value;
-                  hintType = true;
-                });
-              } else if (name == 'No of bedrooms') {
-                setState(() {
-                  bedroom = int.parse(value);
-                  hintBedroom = true;
-                });
-                print(bedroom);
-              } else if (name == 'Location') {
-                setState(() {
-                  location = value;
-                  hintLocation = true;
-                });
-                print(location);
-              } else if (name == 'No of bathrooms') {
-                setState(() {
-                  bathrooms = int.parse(value);
-                  hintBathroom = true;
-                });
-                print('Bathrooms = ' + bathrooms.toString());
-              } else {
-                setState(() {
-                  apartmentType = value;
-                  hintApartment = true;
-                });
-              }
-            },
-            style: TextStyle(
-              color: Theme.of(context).primaryColorDark,
-              fontSize: _height * 0.015,
-              letterSpacing: 1.2,
-              fontFamily: 'Crete_Round',
             ),
           ),
         ),
@@ -166,20 +173,19 @@ class _AddHouseState extends State<AddHouse> {
             letterSpacing: 1.2,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(_height * 0.012),
             borderSide: BorderSide(
-              color: Theme.of(context).primaryColorDark,
+              color: Theme.of(context).backgroundColor,
               width: 0.0,
             ),
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(_height * 0.012),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(_height * 0.012),
             borderSide: BorderSide(
-              color: Colors.green,
-              width: 0.0,
+              color: Theme.of(context).backgroundColor,
             ),
           ),
         ),
@@ -351,6 +357,7 @@ class _AddHouseState extends State<AddHouse> {
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         toolbarHeight: _height * 0.07,
         title: Text(

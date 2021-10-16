@@ -80,7 +80,7 @@ class HouseCarousel extends StatelessWidget {
                 Text(
                   house.homeName,
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Theme.of(context).primaryColorDark,
                     fontWeight: FontWeight.bold,
                     fontSize: _height * 0.03,
                     overflow: TextOverflow.ellipsis,
@@ -90,7 +90,7 @@ class HouseCarousel extends StatelessWidget {
                 Text(
                   house.type,
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Theme.of(context).primaryColorDark,
                     fontSize: _height * 0.02,
                     overflow: TextOverflow.ellipsis,
                     letterSpacing: _height * 0.0015,
@@ -99,7 +99,7 @@ class HouseCarousel extends StatelessWidget {
                 Text(
                   house.price + ' Tk/m',
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Theme.of(context).primaryColorDark,
                     fontSize: _height * 0.02,
                     overflow: TextOverflow.ellipsis,
                     letterSpacing: _height * 0.0015,
@@ -109,14 +109,14 @@ class HouseCarousel extends StatelessWidget {
                   children: <Widget>[
                     Icon(
                       Icons.location_pin,
-                      color: Colors.black54,
+                      color: Theme.of(context).primaryColorDark,
                       size: _height * 0.02,
                     ),
                     SizedBox(width: _width * 0.01),
                     Text(
                       house.location,
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Theme.of(context).primaryColorDark,
                         fontSize: _height * 0.02,
                         overflow: TextOverflow.ellipsis,
                         letterSpacing: _height * 0.0015,

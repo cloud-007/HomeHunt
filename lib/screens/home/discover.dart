@@ -78,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               'Hello, ',
                               style: TextStyle(
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
                               ),
                             ),
                           ),
@@ -86,6 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.scaleDown,
                             child: Text(
                               user.displayName,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColorDark,
+                                letterSpacing: 1,
+                              ),
                             ),
                           ),
                         ],
@@ -117,9 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding:
                             EdgeInsets.symmetric(horizontal: _width * 0.05),
                         child: Center(
-                          child: TextFormField(
-                            cursorColor: Colors.grey,
-                            cursorHeight: _height * 0.035,
+                          child: TextField(
+                            cursorColor: Colors.white60,
+                            cursorHeight: _height * 0.025,
                             key: ValueKey('search'),
                             decoration: InputDecoration(
                               filled: true,
@@ -127,18 +133,18 @@ class _HomeScreenState extends State<HomeScreen> {
                               hintText: 'Search',
                               hintStyle: TextStyle(
                                 letterSpacing: 1.2,
-                                color: Colors.grey,
+                                color: Colors.white60,
                                 fontSize: _height * 0.023,
                               ),
                               prefixIcon: Icon(
                                 Icons.search_sharp,
                                 size: _height * 0.023,
-                                color: Colors.grey,
+                                color: Colors.white60,
                               ),
                               border: InputBorder.none,
                             ),
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.white60,
                               fontSize: _height * 0.023,
                               letterSpacing: 1.2,
                             ),
@@ -162,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Container(
                               decoration: BoxDecoration(
                                 color: index == _selectedIndex
-                                    ? Theme.of(context).primaryColorDark
+                                    ? Colors.black54
                                     : Theme.of(context).primaryColor,
                                 borderRadius:
                                     BorderRadius.circular(_height * 0.012),
@@ -182,12 +188,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Text(
                                       _buildList[index],
                                       style: TextStyle(
-                                        color: index == _selectedIndex
-                                            ? Colors.white
-                                            : Colors.black54,
-                                        fontFamily: "Crete_Round",
-                                        fontWeight: FontWeight.w100,
-                                        fontSize: _height * 0.02,
+                                        color:
+                                            Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: _height * 0.015,
+                                        letterSpacing: 1,
                                       ),
                                     ),
                                   ),
