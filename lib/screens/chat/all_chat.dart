@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AllChatScreen extends StatefulWidget {
@@ -13,17 +11,17 @@ class _AllChatScreenState extends State<AllChatScreen> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.bottom -
-        MediaQuery.of(context).padding.top;
+        MediaQuery.of(context).padding.bottom;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Theme.of(context).backgroundColor,
+        foregroundColor: Theme.of(context).canvasColor,
         shadowColor: Theme.of(context).primaryColor,
         elevation: 10,
         toolbarHeight: _height * 0.06,
         titleTextStyle: TextStyle(
-          color: Colors.black,
           fontSize: _height * 0.025,
           letterSpacing: _height * 0.001,
         ),

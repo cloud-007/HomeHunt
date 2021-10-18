@@ -48,7 +48,15 @@ class _NewMessagesState extends State<NewMessages> {
               controller: _controller,
               decoration: InputDecoration(
                 labelText: 'Send a messages...',
+                labelStyle: TextStyle(
+                  color: Theme.of(context).canvasColor,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
+                ),
                 // border: InputBorder.OutlineInputBorder,
+              ),
+              style: TextStyle(
+                color: Theme.of(context).canvasColor,
+                fontSize: MediaQuery.of(context).size.height * 0.023,
               ),
               onChanged: (value) {
                 setState(() {
@@ -58,7 +66,8 @@ class _NewMessagesState extends State<NewMessages> {
             ),
           ),
           IconButton(
-            color: Colors.green,
+            color: Colors.blue,
+            disabledColor: Colors.grey,
             icon: Icon(Icons.send),
             onPressed: _enteredMessage.trim().isEmpty ? null : _trySubmit,
           ),

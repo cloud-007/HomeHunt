@@ -79,15 +79,16 @@ class _HouseDetailState extends State<HouseDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
+    final _height = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.bottom;
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        toolbarHeight: _height * 0.07,
+        toolbarHeight: _height * 0.06,
         title: Text(widget.homeName),
         backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Theme.of(context).primaryColorDark,
+        foregroundColor: Theme.of(context).canvasColor,
         actions: [
           IconButton(
             icon: Icon(favorite == null
@@ -196,150 +197,155 @@ class _HouseDetailState extends State<HouseDetail> {
                       },
                     ),
                   ),
-                  Container(
-                    height: _height * 0.40,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              widget.apartmentType,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
-                                fontSize: _height * 0.03,
+                  SingleChildScrollView(
+                    child: Container(
+                      height: _height * 0.42,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.apartmentType,
+                                style: TextStyle(
+                                  color: Theme.of(context).canvasColor,
+                                  fontSize: _height * 0.03,
+                                ),
                               ),
-                            ),
-                            Text(
-                              'Tk' + widget.price + '/month',
-                              style: TextStyle(
-                                fontSize: _height * 0.03,
-                                color: Colors.orange.shade900,
+                              Text(
+                                'Tk' + widget.price + '/month',
+                                style: TextStyle(
+                                  fontSize: _height * 0.03,
+                                  color: Colors.orange.shade900,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: _height * 0.01),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              color: Theme.of(context).primaryColorDark,
-                            ),
-                            SizedBox(width: _width * 0.02),
-                            Text(
-                              widget.location,
-                              style: TextStyle(
-                                fontSize: _height * 0.02,
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: _height * 0.01),
-                        Row(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.bed_outlined,
-                                  color: Theme.of(context).primaryColorDark,
-                                ),
-                                SizedBox(width: _width * 0.02),
-                                Text(
-                                  widget.bedroom.toString() + ' Beds',
-                                  style: TextStyle(
-                                    fontSize: _height * 0.02,
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: _width * 0.1),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.bathtub_outlined,
-                                  color: Theme.of(context).primaryColorDark,
-                                ),
-                                SizedBox(width: _width * 0.02),
-                                Text(
-                                  widget.bathroom.toString() + ' Baths',
-                                  style: TextStyle(
-                                    fontSize: _height * 0.02,
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: _width * 0.1),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.house_outlined,
-                                  color: Theme.of(context).primaryColorDark,
-                                ),
-                                SizedBox(width: _width * 0.02),
-                                Text(
-                                  widget.type + ' House',
-                                  style: TextStyle(
-                                    fontSize: _height * 0.02,
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: _height * 0.02),
-                        Text(
-                          'Description',
-                          style: TextStyle(
-                            fontSize: _height * 0.025,
-                            color: Theme.of(context).primaryColorDark,
+                            ],
                           ),
-                        ),
-                        SizedBox(height: _height * 0.01),
-                        Container(
-                          height: _height * 0.23,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: SingleChildScrollView(
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of '
-                              'the printing and typesetting industry. Lorem Ipsum'
-                              ' has been the industry\'s standard dummy text ever '
-                              'since the 1500s, when an unknown printer took a galley'
-                              ' of type and scrambled it to make a type specimen book.'
-                              ' It has survived not only five centuries, but also the'
-                              ' leap into electronic typesetting, remaining essentially '
-                              'unchanged. It was popularised in the 1960s with the '
-                              'release of Letraset sheets containing Lorem Ipsum '
-                              'passages, and more recently with desktop publishing '
-                              'software like Aldus PageMaker including versions of'
-                              ' Lorem Ipsum. ',
-                              style: TextStyle(
-                                fontSize: _height * 0.02,
-                                color: Theme.of(context).primaryColorDark,
-                                overflow: TextOverflow.visible,
+                          SizedBox(height: _height * 0.01),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                color: Theme.of(context).canvasColor,
                               ),
+                              SizedBox(width: _width * 0.02),
+                              Text(
+                                widget.location,
+                                style: TextStyle(
+                                  fontSize: _height * 0.02,
+                                  color: Theme.of(context).canvasColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: _height * 0.01),
+                          Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.bed_outlined,
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                  SizedBox(width: _width * 0.02),
+                                  Text(
+                                    widget.bedroom.toString() + ' Beds',
+                                    style: TextStyle(
+                                      fontSize: _height * 0.02,
+                                      color: Theme.of(context).canvasColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: _width * 0.1),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.bathtub_outlined,
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                  SizedBox(width: _width * 0.02),
+                                  Text(
+                                    widget.bathroom.toString() + ' Baths',
+                                    style: TextStyle(
+                                      fontSize: _height * 0.02,
+                                      color: Theme.of(context).canvasColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: _width * 0.1),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.house_outlined,
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                  SizedBox(width: _width * 0.02),
+                                  Text(
+                                    widget.type + ' House',
+                                    style: TextStyle(
+                                      fontSize: _height * 0.02,
+                                      color: Theme.of(context).canvasColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: _height * 0.02),
+                          Text(
+                            'Description',
+                            style: TextStyle(
+                              fontSize: _height * 0.025,
+                              color: Theme.of(context).canvasColor,
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: _height * 0.01),
+                          SingleChildScrollView(
+                            child: Container(
+                              height: _height * 0.22,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(_height * 0.015),
+                              ),
+                              child: SingleChildScrollView(
+                                child: Text(
+                                  'Lorem Ipsum is simply dummy text of '
+                                  'the printing and typesetting industry. Lorem Ipsum'
+                                  ' has been the industry\'s standard dummy text ever '
+                                  'since the 1500s, when an unknown printer took a galley'
+                                  ' of type and scrambled it to make a type specimen book.'
+                                  ' It has survived not only five centuries, but also the'
+                                  ' leap into electronic typesetting, remaining essentially '
+                                  'unchanged. It was popularised in the 1960s with the '
+                                  'release of Letraset sheets containing Lorem Ipsum '
+                                  'passages, and more recently with desktop publishing '
+                                  'software like Aldus PageMaker including versions of'
+                                  ' Lorem Ipsum. ',
+                                  style: TextStyle(
+                                    fontSize: _height * 0.02,
+                                    color: Theme.of(context).canvasColor,
+                                    //overflow: TextOverflow.,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(height: _height * 0.03),
                 ],
               ),
+              SizedBox(height: _height * 0.025),
               Container(
                 height: _height * 0.08,
                 decoration: BoxDecoration(
@@ -347,10 +353,10 @@ class _HouseDetailState extends State<HouseDetail> {
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      color: Theme.of(context).backgroundColor,
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(1, 1), // changes position of shadow
                     ),
                   ],
                 ),

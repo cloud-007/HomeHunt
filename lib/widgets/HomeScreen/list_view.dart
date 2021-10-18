@@ -9,7 +9,9 @@ import 'package:homehunt/widgets/HomeScreen/housecarousel.dart';
 
 class HomeScreenListView extends StatefulWidget {
   final int _selectedIndex;
-  const HomeScreenListView(this._selectedIndex, {key}) : super(key: key);
+  final String searchText;
+  const HomeScreenListView(this._selectedIndex, this.searchText, {key})
+      : super(key: key);
 
   @override
   State<HomeScreenListView> createState() => _HomeScreenListViewState();

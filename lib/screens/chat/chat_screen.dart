@@ -26,6 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Hero(
       tag: 'chat',
       child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Container(
           color: Colors.transparent,
           child: Column(

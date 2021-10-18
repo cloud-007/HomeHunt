@@ -10,7 +10,6 @@ import 'package:uuid/uuid.dart';
 
 class AddHouse extends StatefulWidget {
   static int totalImage = 0;
-  static List<String> _imageUrl;
   const AddHouse({key}) : super(key: key);
   @override
   _AddHouseState createState() => _AddHouseState();
@@ -75,7 +74,7 @@ class _AddHouseState extends State<AddHouse> {
                                     ? "Select " + name
                                     : apartmentType),
                 style: TextStyle(
-                  color: Theme.of(context).primaryColorDark,
+                  color: Theme.of(context).canvasColor,
                   fontSize: _height * 0.015,
                   letterSpacing: 1.2,
                   fontFamily: 'Montserrat-ExtraLight',
@@ -128,7 +127,7 @@ class _AddHouseState extends State<AddHouse> {
                 }
               },
               style: TextStyle(
-                color: Theme.of(context).primaryColorDark,
+                color: Theme.of(context).canvasColor,
                 fontSize: _height * 0.015,
                 letterSpacing: 1.2,
                 fontFamily: 'Montserrat',
@@ -168,7 +167,7 @@ class _AddHouseState extends State<AddHouse> {
           fillColor: Theme.of(context).primaryColor,
           labelText: name,
           labelStyle: TextStyle(
-            color: Theme.of(context).primaryColorDark,
+            color: Theme.of(context).canvasColor,
             fontSize: _height * 0.015,
             letterSpacing: 1.2,
           ),
@@ -190,7 +189,7 @@ class _AddHouseState extends State<AddHouse> {
           ),
         ),
         style: TextStyle(
-          color: Theme.of(context).primaryColorDark,
+          color: Theme.of(context).canvasColor,
           fontSize: _height * 0.015,
           letterSpacing: 1.2,
         ),
@@ -354,24 +353,28 @@ class _AddHouseState extends State<AddHouse> {
 
   @override
   Widget build(BuildContext context) {
-    _height = MediaQuery.of(context).size.height;
+    _height = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.bottom;
+
     _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        toolbarHeight: _height * 0.07,
+        toolbarHeight: _height * 0.06,
+        foregroundColor: Theme.of(context).canvasColor,
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Add your house info',
           style: TextStyle(
             fontSize: _height * 0.023,
-            color: Theme.of(context).primaryColorDark,
           ),
         ),
-        backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,
-              size: _height * 0.023, color: Theme.of(context).primaryColorDark),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: _height * 0.023,
+          ),
           onPressed: Navigator.of(context).pop,
         ),
       ),
@@ -387,7 +390,7 @@ class _AddHouseState extends State<AddHouse> {
                 Text(
                   'Please provide some information about your house!',
                   style: TextStyle(
-                    color: Theme.of(context).primaryColorDark,
+                    color: Theme.of(context).canvasColor,
                     fontSize: _height * 0.02,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -466,13 +469,13 @@ class _AddHouseState extends State<AddHouse> {
                       icon: Icon(
                         Icons.add_photo_alternate,
                         size: _height * 0.025,
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme.of(context).canvasColor,
                       ),
                       label: Text(
                         'Click here to add Some images',
                         style: TextStyle(
                           fontSize: _height * 0.017,
-                          color: Theme.of(context).primaryColorDark,
+                          color: Theme.of(context).canvasColor,
                         ),
                       ),
                     ),

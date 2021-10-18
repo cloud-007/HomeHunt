@@ -34,6 +34,8 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Colors.lightBlue.shade900,
         primaryColorDark: Colors.white,
         errorColor: Colors.red,
+        canvasColor: Colors.cyan.shade50,
+        cardColor: Colors.amber.shade800,
         fontFamily: "Montserrat-ExtraLight",
       ),
       home: FirebaseAuth.instance.currentUser != null &&

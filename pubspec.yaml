@@ -43,6 +43,7 @@ dependencies:
   multi_image_picker: ^4.7.14
   uuid: ^3.0.5
   connectivity: ^3.0.6
+  flutter_native_splash: ^1.2.4
 
 dev_dependencies:
   flutter_test:

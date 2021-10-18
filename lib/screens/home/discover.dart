@@ -14,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
+  String searchText;
+  final _controller = TextEditingController();
 
   int _selectedIndex = 0;
 
@@ -26,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<HouseCarousel> list;
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
+    final _height = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.bottom;
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -34,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.blue,
         child: Icon(
           Icons.add_outlined,
-          color: Colors.white,
+          color: Theme.of(context).canvasColor,
           size: 30,
         ),
         onPressed: () {
@@ -78,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               'Hello, ',
                               style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
+                                color: Theme.of(context).canvasColor,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1,
                               ),
@@ -89,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               user.displayName,
                               style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
+                                color: Theme.of(context).canvasColor,
                                 letterSpacing: 1,
                               ),
                             ),
@@ -107,7 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           'Discover',
                           style: TextStyle(
-                            color: Theme.of(context).primaryColorDark,
+                            color: Theme.of(context).canvasColor,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.2,
                           ),
                         ),
                       ),
@@ -127,10 +132,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             cursorColor: Colors.white60,
                             cursorHeight: _height * 0.025,
                             key: ValueKey('search'),
+                            controller: _controller,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Theme.of(context).primaryColor,
-                              hintText: 'Search',
+                              hintText: 'Search Location',
                               hintStyle: TextStyle(
                                 letterSpacing: 1.2,
                                 color: Colors.white60,
@@ -148,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: _height * 0.023,
                               letterSpacing: 1.2,
                             ),
+                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -188,9 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Text(
                                       _buildList[index],
                                       style: TextStyle(
-                                        color:
-                                            Theme.of(context).primaryColorDark,
-                                        fontWeight: FontWeight.w800,
+                                        color: Theme.of(context).canvasColor,
+                                        fontWeight: FontWeight.w900,
                                         fontSize: _height * 0.015,
                                         letterSpacing: 1,
                                       ),
@@ -216,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(bottom: _height * 0.03),
-                  child: HomeScreenListView(_selectedIndex),
+                  child: HomeScreenListView(_selectedIndex, searchText),
                 ),
               ),
             ],

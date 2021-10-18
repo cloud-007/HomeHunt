@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -36,7 +35,8 @@ class MessageBubble extends StatelessWidget {
         Container(
           width: _width * 0.7,
           decoration: BoxDecoration(
-            color: isMe ? Colors.blueGrey.shade400 : Colors.indigo.shade400,
+            color:
+                isMe ? Colors.green.shade700 : Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
               bottomLeft:
                   isMe ? Radius.circular(_height * 0.015) : Radius.circular(0),
@@ -66,7 +66,8 @@ class MessageBubble extends StatelessWidget {
                 child: Text(
                   message,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).canvasColor,
+                    fontSize: _height * 0.019,
                   ),
                 ),
               ),
@@ -76,7 +77,8 @@ class MessageBubble extends StatelessWidget {
                 child: Text(
                   hour + ':' + minute + ' ' + ampm,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).canvasColor,
+                    fontSize: _height * 0.015,
                   ),
                 ),
               ),

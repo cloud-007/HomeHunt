@@ -3,7 +3,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:homehunt/screens/chat/all_chat.dart';
-import 'package:homehunt/screens/chat/chat_screen.dart';
 import 'package:homehunt/screens/home/discover.dart';
 import 'package:homehunt/screens/profile/profile_screen.dart';
 
