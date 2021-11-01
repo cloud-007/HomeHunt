@@ -56,7 +56,7 @@ class _HouseImagePickerState extends State<HouseImagePicker> {
           height: _height * 0.18,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).hoverColor,
             borderRadius: BorderRadius.circular(15),
           ),
           child: ListView.builder(

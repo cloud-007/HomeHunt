@@ -5,20 +5,6 @@ import 'package:homehunt/model/house.dart';
 
 class HouseCarousel extends StatelessWidget {
   final House house;
-  /*final String homeName;
-  final String type;
-  final String price;
-  final String location;
-  final String imageUrl;
-  final bool family;
-  final bool bachelor;
-  final bool boys;
-  final bool girls; 
-
-  HouseCarousel(this.homeName, this.type, this.price, this.location,
-      this.imageUrl, this.family, this.bachelor, this.boys, this.girls,
-      {Key key})
-      : super(key: key); */
 
   HouseCarousel(this.house, {Key key}) : super(key: key);
 
@@ -29,7 +15,7 @@ class HouseCarousel extends StatelessWidget {
     return Container(
       height: _height * 0.17,
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(context).hoverColor,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(

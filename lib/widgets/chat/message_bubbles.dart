@@ -20,11 +20,11 @@ class MessageBubble extends StatelessWidget {
     final _width = MediaQuery.of(context).size.width;
     if (hour.length == 1) {
       hour = '0' + hour;
-      ampm = 'AM';
+      ampm = 'am';
     } else if (hour == '11') {
-      ampm = 'AM';
+      ampm = 'am';
     } else {
-      ampm = 'PM';
+      ampm = 'pm';
     }
     if (minute.length == 1) {
       minute = '0' + minute;
@@ -67,7 +67,7 @@ class MessageBubble extends StatelessWidget {
                   message,
                   style: TextStyle(
                     color: Theme.of(context).canvasColor,
-                    fontSize: _height * 0.019,
+                    fontSize: _height * 0.018,
                   ),
                 ),
               ),

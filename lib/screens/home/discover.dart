@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:homehunt/screens/house/add_house.dart';
 import 'package:homehunt/widgets/HomeScreen/list_view.dart';
 import 'package:homehunt/widgets/HomeScreen/housecarousel.dart';
 
@@ -33,22 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        child: Icon(
-          Icons.add_outlined,
-          color: Theme.of(context).canvasColor,
-          size: 30,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => AddHouse(),
-            ),
-          );
-        },
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: _width * 0.03, vertical: _height * 0.01),
@@ -120,42 +103,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: _height * 0.01),
                     Container(
                       height: _height * 0.055,
+                      padding: EdgeInsets.symmetric(horizontal: _width * 0.05),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        //color: Colors.red,
+                        color: Theme.of(context).hoverColor,
                         borderRadius: BorderRadius.circular(_height * 0.012),
                       ),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: _width * 0.05),
-                        child: Center(
-                          child: TextField(
-                            cursorColor: Colors.white60,
-                            cursorHeight: _height * 0.025,
-                            key: ValueKey('search'),
-                            controller: _controller,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Theme.of(context).primaryColor,
-                              hintText: 'Search Location',
-                              hintStyle: TextStyle(
-                                letterSpacing: 1.2,
-                                color: Colors.white60,
-                                fontSize: _height * 0.023,
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search_sharp,
-                                size: _height * 0.023,
-                                color: Colors.white60,
-                              ),
-                              border: InputBorder.none,
-                            ),
-                            style: TextStyle(
-                              color: Colors.white60,
-                              fontSize: _height * 0.023,
+                      child: Center(
+                        child: TextField(
+                          cursorColor: Theme.of(context).canvasColor,
+                          key: ValueKey('search'),
+                          controller: _controller,
+                          decoration: InputDecoration(
+                            //filled: true,
+                            // fillColor: Theme.of(context).hoverColor,
+                            hintText: 'Search Location',
+                            hintStyle: TextStyle(
                               letterSpacing: 1.2,
+                              color: Theme.of(context).canvasColor,
+                              fontSize: _height * 0.017,
                             ),
-                            onChanged: (value) {},
+                            prefixIcon: Icon(
+                              Icons.search_sharp,
+                              size: _height * 0.017,
+                              color: Theme.of(context).canvasColor,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromRGBO(44, 130, 201, 0.0),
+                                width: 5.0,
+                              ),
+                            ),
                           ),
+                          style: TextStyle(
+                            color: Theme.of(context).canvasColor,
+                            fontSize: _height * 0.017,
+                            letterSpacing: 1.2,
+                          ),
+                          onChanged: (value) {},
                         ),
                       ),
                     ),
@@ -170,32 +155,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         itemCount: _buildList.length,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(right: _width * 0.04),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: index == _selectedIndex
-                                    ? Colors.black54
-                                    : Theme.of(context).primaryColor,
-                                borderRadius:
-                                    BorderRadius.circular(_height * 0.012),
-                              ),
-                              child: Center(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: _width * 0.04,
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _selectedIndex = index;
-                                        print(_selectedIndex);
-                                      });
-                                    },
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = index;
+                                print(_selectedIndex);
+                              });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(right: _width * 0.04),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: index == _selectedIndex
+                                      ? Theme.of(context).canvasColor
+                                      : Theme.of(context).hoverColor,
+                                  borderRadius:
+                                      BorderRadius.circular(_height * 0.012),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: _width * 0.04,
+                                    ),
                                     child: Text(
                                       _buildList[index],
                                       style: TextStyle(
-                                        color: Theme.of(context).canvasColor,
+                                        color: index == _selectedIndex
+                                            ? Theme.of(context).backgroundColor
+                                            : Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w900,
                                         fontSize: _height * 0.015,
                                         letterSpacing: 1,

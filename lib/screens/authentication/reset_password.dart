@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:homehunt/screens/login_register/login_screen.dart';
+import 'package:homehunt/screens/authentication/login_screen.dart';
 import 'package:homehunt/widgets/app_name.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -95,7 +95,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 SizedBox(height: _height * 0.13),
                 TextFormField(
-                  cursorColor: Theme.of(context).primaryColorDark,
+                  cursorColor: Theme.of(context).canvasColor,
                   cursorHeight: _height * 0.025,
                   controller: _emailController,
                   key: ValueKey('email'),
@@ -116,7 +116,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Theme.of(context).primaryColor,
+                    fillColor: Theme.of(context).hoverColor,
                     labelText: 'Email',
                     labelStyle: TextStyle(
                       color: Theme.of(context).primaryColorDark,
@@ -182,7 +182,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     child: TextButton(
                       onPressed: _trySubmit,
                       child: Text(
-                        'Request Change',
+                        'Change Password',
                         style: TextStyle(
                           color: Theme.of(context).primaryColorDark,
                           fontSize: _height * 0.02,

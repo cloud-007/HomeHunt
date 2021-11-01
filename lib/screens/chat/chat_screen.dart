@@ -34,10 +34,10 @@ class _ChatScreenState extends State<ChatScreen> {
               Container(
                 height: _height * 0.1,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).backgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.1),
                       spreadRadius: 3,
                       blurRadius: 5,
                       offset: Offset(1, 1), // changes position of shadow

@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).hoverColor,
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3), // changes position of shadow
@@ -82,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
                 backgroundImage:
                     NetworkImage(FirebaseAuth.instance.currentUser.photoURL),
                 radius: MediaQuery.of(context).size.height * 0.015,
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).hoverColor,
               ),
               label: 'Profile',
             ),

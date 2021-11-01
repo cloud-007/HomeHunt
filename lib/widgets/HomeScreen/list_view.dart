@@ -28,9 +28,6 @@ class _HomeScreenListViewState extends State<HomeScreenListView> {
   int bedroom;
   int bathrooms;
   String phoneNumber;
-  List<String> detailedImages;
-
-  List<String> userId;
 
   @override
   Widget build(BuildContext context) {
@@ -51,49 +48,72 @@ class _HomeScreenListViewState extends State<HomeScreenListView> {
           return Center(child: CircularIndicator());
         } else {
           final chatDocs = chatSnapshot.data.docs;
-          return ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: chatDocs.length,
-            itemBuilder: (ctx, index) => GestureDetector(
-              onTap: () {
-                // print(list[index].homeName);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => HouseDetail(
+          if (chatDocs.isEmpty) {
+            return const Center(
+              child: Text(
+                'Nothing Found',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: chatDocs.length,
+              itemBuilder: (ctx, index) => GestureDetector(
+                onTap: () async {
+                  String photoURL;
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .where('uid', isEqualTo: chatDocs[index]['uid'])
+                      .get()
+                      .then((QuerySnapshot querySnapshot) {
+                    querySnapshot.docs.forEach((doc) {
+                      photoURL = doc["imageUrl"];
+                    });
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => HouseDetail(
+                        chatDocs[index]['name'],
+                        chatDocs[index]['type'],
+                        chatDocs[index]['apartmentType'],
+                        chatDocs[index]['price'],
+                        chatDocs[index]['location'],
+                        chatDocs[index]['bedroom'],
+                        chatDocs[index]['bathrooms'],
+                        chatDocs[index]['phoneNumber'],
+                        chatDocs[index].id,
+                        chatDocs[index]['uid'],
+                        chatDocs[index]['username'],
+                        photoURL,
+                      ),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.01),
+                  child: HouseCarousel(
+                    House(
                       chatDocs[index]['name'],
                       chatDocs[index]['type'],
                       chatDocs[index]['apartmentType'],
                       chatDocs[index]['price'],
                       chatDocs[index]['location'],
+                      chatDocs[index]['imageUrl'],
                       chatDocs[index]['bedroom'],
                       chatDocs[index]['bathrooms'],
-                      chatDocs[index]['phoneNumber'],
-                      chatDocs[index].id,
-                      chatDocs[index]['uid'],
-                      chatDocs[index]['username'],
                     ),
-                  ),
-                );
-              },
-              child: Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height * 0.01),
-                child: HouseCarousel(
-                  House(
-                    chatDocs[index]['name'],
-                    chatDocs[index]['type'],
-                    chatDocs[index]['apartmentType'],
-                    chatDocs[index]['price'],
-                    chatDocs[index]['location'],
-                    chatDocs[index]['imageUrl'],
-                    chatDocs[index]['bedroom'],
-                    chatDocs[index]['bathrooms'],
                   ),
                 ),
               ),
-            ),
-          );
+            );
+          }
         }
       },
     );

@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:homehunt/screens/login_register/register_screen.dart';
+import 'package:homehunt/screens/authentication/register_screen.dart';
 import 'package:homehunt/screens/home/main_screen.dart';
 import 'package:homehunt/widgets/circular_indicator.dart';
 
@@ -148,6 +148,7 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: EdgeInsets.all(15.0),
         child: Center(
@@ -160,6 +161,7 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.height * 0.02,
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).canvasColor,
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
@@ -168,15 +170,11 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.lightGreen.shade100,
+                    color: Colors.blue.shade500,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: Colors.green.shade900,
-                      width: 0.50,
-                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        color: Theme.of(context).primaryColor.withOpacity(0.3),
                         spreadRadius: 5,
                         blurRadius: 7,
                         offset: Offset(0, 3), // changes position of shadow
@@ -188,9 +186,9 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
                     child: Text(
                       'Continue',
                       style: TextStyle(
-                        color: Colors.green.shade700,
-                        fontSize: MediaQuery.of(context).size.height * 0.035,
-                        letterSpacing: 1.5,
+                        color: Theme.of(context).primaryColorDark,
+                        fontSize: MediaQuery.of(context).size.height * 0.02,
+                        letterSpacing: 1,
                       ),
                     ),
                   ),

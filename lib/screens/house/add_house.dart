@@ -40,12 +40,14 @@ class _AddHouseState extends State<AddHouse> {
   bool hintBathroom = false;
   bool hintApartment = false;
 
+  bool isLoading = false;
+
   Widget _createDropDown(String name, List<String> _list) {
     return Container(
       width: double.infinity,
       height: _height * 0.025,
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(context).hoverColor,
         borderRadius: BorderRadius.circular(_height * 0.012),
       ),
       child: Padding(
@@ -164,7 +166,7 @@ class _AddHouseState extends State<AddHouse> {
             name == 'House Name' ? TextInputType.name : TextInputType.number,
         decoration: InputDecoration(
           filled: true,
-          fillColor: Theme.of(context).primaryColor,
+          fillColor: Theme.of(context).hoverColor,
           labelText: name,
           labelStyle: TextStyle(
             color: Theme.of(context).canvasColor,
@@ -253,15 +255,17 @@ class _AddHouseState extends State<AddHouse> {
     return true;
   }
 
-  bool isLoading = false;
+  bool isHouseUploading = false;
 
   Future<void> _trySubmit() async {
     setState(() {
+      isHouseUploading = true;
       isLoading = true;
     });
     if (_tryValidate() == false) {
       setState(() {
         isLoading = false;
+        isHouseUploading = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -309,7 +313,6 @@ class _AddHouseState extends State<AddHouse> {
         await ref.putFile(_imageTotal[i]);
         final url = await ref.getDownloadURL();
         imageUrl ??= url;
-        await Future.delayed(const Duration(seconds: 2), () {});
 
         await FirebaseFirestore.instance
             .collection('house_images')
@@ -319,7 +322,6 @@ class _AddHouseState extends State<AddHouse> {
             .set({
           'imageUrl': url,
         });
-        await Future.delayed(const Duration(seconds: 2), () {});
       }
 
       await FirebaseFirestore.instance.collection('houses').doc(uid).set({
@@ -344,6 +346,7 @@ class _AddHouseState extends State<AddHouse> {
       );
       setState(() {
         isLoading = false;
+        isHouseUploading = false;
       });
       Navigator.of(context).pop();
     }
@@ -362,7 +365,7 @@ class _AddHouseState extends State<AddHouse> {
       appBar: AppBar(
         toolbarHeight: _height * 0.06,
         foregroundColor: Theme.of(context).canvasColor,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).hoverColor,
         title: Text(
           'Add your house info',
           style: TextStyle(
@@ -370,13 +373,15 @@ class _AddHouseState extends State<AddHouse> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: _height * 0.023,
-          ),
-          onPressed: Navigator.of(context).pop,
-        ),
+        leading: isHouseUploading
+            ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: _height * 0.023,
+                ),
+                onPressed: Navigator.of(context).pop,
+              )
+            : null,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -483,7 +488,7 @@ class _AddHouseState extends State<AddHouse> {
                       height: _height * 0.12,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).hoverColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: ListView.builder(
@@ -522,14 +527,6 @@ class _AddHouseState extends State<AddHouse> {
                                       ),
                                     ),
                                   ),
-                                /* TextButton(
-                                  child: Text('Remove'),
-                                  onPressed: () {
-                                    setState(() {
-                                      _imageTotal.remove(_imageTotal[index]);
-                                    });
-                                  },
-                                ),*/
                               ],
                             ),
                           );
@@ -545,7 +542,7 @@ class _AddHouseState extends State<AddHouse> {
                     width: double.infinity,
                     height: _height * 0.05,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).hoverColor,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: TextButton(

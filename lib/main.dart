@@ -4,13 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:homehunt/screens/login_register/login_screen.dart';
+import 'package:homehunt/screens/authentication/login_screen.dart';
 import 'package:homehunt/screens/home/main_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  //print('User id = ' + FirebaseAuth.instance.currentUser.toString());
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MyApp());
@@ -32,6 +34,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.indigo,
         primaryColor: Colors.lightBlue.shade800,
         backgroundColor: Colors.lightBlue.shade900,
+        hoverColor: Color.fromRGBO(44, 130, 201, 0.2),
         primaryColorDark: Colors.white,
         errorColor: Colors.red,
         canvasColor: Colors.cyan.shade50,
