@@ -77,6 +77,9 @@ class _MyListingState extends State<MyListing> {
                           chatDocs[index]['uid'],
                           chatDocs[index]['username'],
                           '',
+                          false,
+                          '',
+                          '',
                         ),
                       ),
                     );

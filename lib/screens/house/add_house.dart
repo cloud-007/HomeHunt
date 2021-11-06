@@ -55,7 +55,7 @@ class _AddHouseState extends State<AddHouse> {
         child: DropdownButtonHideUnderline(
           child: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Theme.of(context).primaryColor,
+              canvasColor: Colors.lightBlue.shade900,
             ),
             child: DropdownButton<String>(
               borderRadius: BorderRadius.circular(_height * 0.012),
@@ -230,6 +230,8 @@ class _AddHouseState extends State<AddHouse> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
             content: Text('You are allowed up to provide 5 images'),
             backgroundColor: Theme.of(context).errorColor,
           ),
@@ -269,6 +271,8 @@ class _AddHouseState extends State<AddHouse> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
           content: Text('Every field is required'),
           backgroundColor: Theme.of(context).errorColor,
         ),
@@ -287,6 +291,8 @@ class _AddHouseState extends State<AddHouse> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
           content: Text('A house with this name exists!'),
           backgroundColor: Theme.of(context).errorColor,
         ),
@@ -295,7 +301,9 @@ class _AddHouseState extends State<AddHouse> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please wait a few second before we proceed.'),
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text('Please wait a few second before system proceed.'),
           backgroundColor: Colors.blue,
         ),
       );
@@ -336,10 +344,14 @@ class _AddHouseState extends State<AddHouse> {
         'phoneNumber': phoneNumber,
         'uid': FirebaseAuth.instance.currentUser.uid,
         'username': FirebaseAuth.instance.currentUser.displayName,
+        'userImageUrl': FirebaseAuth.instance.currentUser.photoURL,
+        'houseid': uid,
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
           content: Text('Your listing has been added successfully.'),
           backgroundColor: Colors.green,
         ),
@@ -376,7 +388,7 @@ class _AddHouseState extends State<AddHouse> {
         leading: isHouseUploading
             ? IconButton(
                 icon: Icon(
-                  Icons.arrow_back_ios,
+                  Icons.arrow_back,
                   size: _height * 0.023,
                 ),
                 onPressed: Navigator.of(context).pop,

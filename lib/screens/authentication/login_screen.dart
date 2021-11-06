@@ -105,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 ///placing the widget on by one
                 children: <Widget>[
+                  ///App name from another class
                   AppName(),
                   SizedBox(height: _height * 0.14),
 

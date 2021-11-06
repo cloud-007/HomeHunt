@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:homehunt/screens/chat/all_chat.dart';
+import 'package:homehunt/screens/favourites.dart';
 import 'package:homehunt/screens/home/discover.dart';
 import 'package:homehunt/screens/profile/profile_screen.dart';
 
@@ -18,15 +19,17 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pageList = <Widget>[
     HomeScreen(),
     AllChatScreen(),
-    ProfileSCreen(),
+    FavouriteScreen(),
     ProfileSCreen(),
   ];
   @override
   Widget build(BuildContext context) {
+    final _font =
+        MediaQuery.of(context).size.height * MediaQuery.of(context).size.width;
     return Scaffold(
       body: pageList[pageIndex],
       bottomNavigationBar: Container(
-        height: MediaQuery.of(context).size.height * 0.07,
+        height: MediaQuery.of(context).size.height * 0.08,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -41,12 +44,12 @@ class _MainScreenState extends State<MainScreen> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.lightBlue.shade900,
           selectedItemColor: Theme.of(context).primaryColorDark,
-          selectedFontSize: MediaQuery.of(context).size.height * 0.013,
+          selectedFontSize: _font * 0.000035,
           currentIndex: pageIndex,
           selectedLabelStyle: TextStyle(
             fontWeight: FontWeight.bold,
           ),
-          unselectedFontSize: MediaQuery.of(context).size.height * 0.011,
+          unselectedFontSize: _font * 0.000035,
           unselectedItemColor: Colors.white54,
           onTap: (value) {
             setState(() {
@@ -57,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(
                 pageIndex == 0 ? Icons.explore_sharp : Icons.explore_outlined,
-                size: MediaQuery.of(context).size.height * 0.025,
+                size: MediaQuery.of(context).size.height * 0.03,
               ),
               label: 'Discover',
             ),
@@ -66,14 +69,14 @@ class _MainScreenState extends State<MainScreen> {
                 pageIndex == 1
                     ? Icons.chat_bubble
                     : Icons.chat_bubble_outline_outlined,
-                size: MediaQuery.of(context).size.height * 0.025,
+                size: MediaQuery.of(context).size.height * 0.03,
               ),
               label: 'Chat',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 pageIndex == 2 ? Icons.favorite : Icons.favorite_border,
-                size: MediaQuery.of(context).size.height * 0.025,
+                size: MediaQuery.of(context).size.height * 0.03,
               ),
               label: 'Favorites',
             ),

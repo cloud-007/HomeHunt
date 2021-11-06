@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:homehunt/screens/notification.dart';
 import 'package:homehunt/widgets/HomeScreen/list_view.dart';
 import 'package:homehunt/widgets/HomeScreen/housecarousel.dart';
 
@@ -15,8 +16,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
   String searchText;
   final _controller = TextEditingController();
+  var _height;
+  var _width;
 
   int _selectedIndex = 0;
+
+  bool drawer = false;
 
   final List<String> _buildList = [
     'All',
@@ -25,11 +30,76 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   List<HouseCarousel> list;
+
+  Widget _createDropDown(String name, List<String> _list) {
+    return Container(
+      width: _width * 0.8,
+      height: _height * 0.025,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(_height * 0.012),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: _width * 0.03),
+        child: DropdownButtonHideUnderline(
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors.lightBlue.shade900,
+            ),
+            child: DropdownButton<String>(
+              borderRadius: BorderRadius.circular(_height * 0.012),
+              hint: Text(
+                searchText == null ? 'Search Location' : searchText,
+                style: TextStyle(
+                  color: Colors.grey.shade200,
+                  fontSize: _height * _width * 0.00004,
+                  letterSpacing: 1.2,
+                  fontFamily: 'Montserrat-ExtraLight',
+                ),
+              ),
+              key: ValueKey(name),
+              items: _list.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      color: Colors.white60,
+                      fontSize: _height * 0.015,
+                      fontFamily: 'Montserrat-ExtraLight',
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  if (value == 'Search Location')
+                    searchText = null;
+                  else
+                    searchText = value;
+                  print(searchText);
+                });
+              },
+              style: TextStyle(
+                color: Colors.grey.shade100,
+                fontSize: _height * 0.015,
+                letterSpacing: 1.2,
+                fontFamily: 'Montserrat',
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height -
+    _height = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.bottom;
-    final _width = MediaQuery.of(context).size.width;
+    _width = MediaQuery.of(context).size.width;
+    final _font = _height * _width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
@@ -50,40 +120,68 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: _height * 0.06,
                       color: Colors.transparent,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          FittedBox(
-                            fit: BoxFit.cover,
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(user.photoURL),
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
-                          SizedBox(width: _width * 0.03),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'Hello, ',
-                              style: TextStyle(
-                                color: Theme.of(context).canvasColor,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
+                          Row(
+                            children: <Widget>[
+                              FittedBox(
+                                fit: BoxFit.cover,
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(user.photoURL),
+                                  backgroundColor: Colors.transparent,
+                                ),
                               ),
-                            ),
+                              SizedBox(width: _width * 0.03),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Hello, ',
+                                  style: TextStyle(
+                                    color: Theme.of(context).canvasColor,
+                                    fontWeight: FontWeight.bold,
+                                    // fontSize: _font * 0.00005,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  user.displayName,
+                                  style: TextStyle(
+                                    // fontSize: _font * 0.00005,
+                                    color: Theme.of(context).canvasColor,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              user.displayName,
-                              style: TextStyle(
+                          GestureDetector(
+                            onTap: () {
+                              print(FirebaseAuth.instance.currentUser.uid);
+                              print('Hello there! No new notifications!');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationScreen(),
+                                ),
+                              );
+                            },
+
+                            ///Notification Icon
+                            child: Hero(
+                              tag: 'Notification',
+                              child: Icon(
+                                Icons.notifications,
                                 color: Theme.of(context).canvasColor,
-                                letterSpacing: 1,
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: _height * 0.00),
+                    //SizedBox(height: _height * 0.00),
                     SizedBox(
                       height: _height * 0.07,
                       width: double.infinity,
@@ -103,44 +201,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: _height * 0.01),
                     Container(
                       height: _height * 0.055,
-                      padding: EdgeInsets.symmetric(horizontal: _width * 0.05),
+                      padding: EdgeInsets.only(left: _width * 0.05),
                       decoration: BoxDecoration(
                         //color: Colors.red,
                         color: Theme.of(context).hoverColor,
                         borderRadius: BorderRadius.circular(_height * 0.012),
                       ),
                       child: Center(
-                        child: TextField(
-                          cursorColor: Theme.of(context).canvasColor,
-                          key: ValueKey('search'),
-                          controller: _controller,
-                          decoration: InputDecoration(
-                            //filled: true,
-                            // fillColor: Theme.of(context).hoverColor,
-                            hintText: 'Search Location',
-                            hintStyle: TextStyle(
-                              letterSpacing: 1.2,
-                              color: Theme.of(context).canvasColor,
-                              fontSize: _height * 0.017,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: Colors.grey.shade200,
+                              size: _height * 0.02,
                             ),
-                            prefixIcon: Icon(
-                              Icons.search_sharp,
-                              size: _height * 0.017,
-                              color: Theme.of(context).canvasColor,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromRGBO(44, 130, 201, 0.0),
-                                width: 5.0,
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(
-                            color: Theme.of(context).canvasColor,
-                            fontSize: _height * 0.017,
-                            letterSpacing: 1.2,
-                          ),
-                          onChanged: (value) {},
+                            _createDropDown('Location', <String>[
+                              'Search Location',
+                              'Upashahar',
+                              'Shibganj',
+                              'Tilagor',
+                              'Naiyorpool',
+                              'Mirabazar',
+                              'Subidbazar',
+                              'Eidgah',
+                              'Lamabazar',
+                            ]),
+                          ],
                         ),
                       ),
                     ),
@@ -149,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: _height * 0.04,
                       decoration: BoxDecoration(
                         color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(_height * 0.012),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -169,8 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: index == _selectedIndex
                                       ? Theme.of(context).canvasColor
                                       : Theme.of(context).hoverColor,
-                                  borderRadius:
-                                      BorderRadius.circular(_height * 0.012),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Center(
                                   child: Padding(
@@ -202,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ///ListView_Builder Home
               Container(
-                height: _height * 0.65,
+                height: _height * 0.64,
                 decoration: BoxDecoration(
                   // color: Colors.red,
                   borderRadius: BorderRadius.circular(_height * 0.012),

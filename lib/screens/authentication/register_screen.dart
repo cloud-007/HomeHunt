@@ -11,7 +11,6 @@ import 'package:homehunt/widgets/circular_indicator.dart';
 import 'package:homehunt/widgets/image_picker/auth_image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
-  static String pageRoute = '/register-screen';
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -88,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           .then((_) {
         final user = FirebaseAuth.instance.currentUser;
         user.sendEmailVerification();
-        return Navigator.pushReplacement(
+        return Navigator.push(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => VerifyScreenNew(
@@ -109,7 +108,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (e.message != null) {
         message = e.message.toString();
       }
-
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
@@ -120,6 +118,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
         isLoading = false;
       });
     } catch (err) {
+      String message = 'An error occurred:(';
+      if (err.message != null) {
+        message = err.message.toString();
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
       print(err);
       setState(() {
         isLoading = false;
@@ -143,6 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 ///placing the widget on by one
                 children: <Widget>[
+                  ///appname
                   AppName(),
                   SizedBox(height: _height * (0.05)),
 

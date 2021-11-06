@@ -83,7 +83,7 @@ class _VerifyScreenNewState extends State<VerifyScreenNew> {
       setState(() {
         isLoading = false;
       });
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (BuildContext context) => MainScreen(),

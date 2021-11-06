@@ -17,23 +17,16 @@ class _AllChatScreenState extends State<AllChatScreen> {
     final _height = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.bottom;
     final _width = MediaQuery.of(context).size.width;
+    final _font = _height * _width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        //  centerTitle: true,
-        backgroundColor: Theme.of(context).hoverColor,
-        foregroundColor: Theme.of(context).canvasColor,
-        shadowColor: Theme.of(context).primaryColor,
-        elevation: 10,
-        toolbarHeight: _height * 0.06,
-        titleTextStyle: TextStyle(
-          fontSize: _height * 0.025,
-          letterSpacing: _height * 0.001,
-        ),
-        title: const Text(
-          '    CHATS',
+        backgroundColor: Theme.of(context).backgroundColor,
+        title: Text(
+          'Chats',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            fontSize: _font * 0.00008,
           ),
         ),
       ),
@@ -96,7 +89,7 @@ class _AllChatScreenState extends State<AllChatScreen> {
                         padding: EdgeInsets.only(bottom: _height * 0.01),
                         child: Container(
                           alignment: Alignment.centerLeft,
-                          height: _height * 0.05,
+                          height: _height * 0.06,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Theme.of(context).hoverColor,
@@ -105,16 +98,32 @@ class _AllChatScreenState extends State<AllChatScreen> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsets.symmetric(horizontal: _width * 0.05),
+                                EdgeInsets.symmetric(horizontal: _width * 0.02),
                             child: Row(
                               children: [
-                                CircleAvatar(
-                                  backgroundImage: NetworkImage(chatDocs[index]
-                                              ['user'][0] ==
-                                          FirebaseAuth.instance.currentUser.uid
-                                              .toString()
-                                      ? chatDocs[index]['userUrl'][0]
-                                      : chatDocs[index]['userUrl'][1]),
+                                Container(
+                                  height: _height * 0.05,
+                                  width: _height * 0.05,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white54,
+                                    borderRadius:
+                                        BorderRadius.circular(_height),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.circular(_height),
+                                    child: Image(
+                                      image: NetworkImage(
+                                        chatDocs[index]['user'][0] ==
+                                                FirebaseAuth
+                                                    .instance.currentUser.uid
+                                                    .toString()
+                                            ? chatDocs[index]['userUrl'][1]
+                                            : chatDocs[index]['userUrl'][0],
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(width: _width * 0.05),
                                 Text(

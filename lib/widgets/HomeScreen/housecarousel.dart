@@ -12,11 +12,12 @@ class HouseCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    final _font = _height * _width;
     return Container(
       height: _height * 0.17,
       decoration: BoxDecoration(
         color: Theme.of(context).hoverColor,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: <Widget>[
@@ -26,10 +27,10 @@ class HouseCarousel extends StatelessWidget {
               width: _width * 0.42,
               height: _height * 0.15,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(8),
                 child: Image.network(
                   house.imageUrl,
                   fit: BoxFit.cover,
@@ -69,7 +70,7 @@ class HouseCarousel extends StatelessWidget {
                     color: Theme.of(context).canvasColor,
                     //color: Theme.of(context).primaryColorDark,
                     fontWeight: FontWeight.bold,
-                    fontSize: _height * 0.03,
+                    fontSize: _font * 0.00007,
                     overflow: TextOverflow.ellipsis,
                     letterSpacing: _height * 0.0015,
                   ),
@@ -79,7 +80,7 @@ class HouseCarousel extends StatelessWidget {
                   style: TextStyle(
                     //color: Theme.of(context).primaryColorDark,
                     color: Theme.of(context).canvasColor,
-                    fontSize: _height * 0.02,
+                    fontSize: _font * 0.00005,
                     overflow: TextOverflow.ellipsis,
                     letterSpacing: _height * 0.0015,
                   ),
@@ -88,7 +89,7 @@ class HouseCarousel extends StatelessWidget {
                   house.price + ' Tk/m',
                   style: TextStyle(
                     color: Theme.of(context).canvasColor,
-                    fontSize: _height * 0.02,
+                    fontSize: _font * 0.00005,
                     overflow: TextOverflow.ellipsis,
                     letterSpacing: _height * 0.0015,
                   ),
@@ -98,14 +99,14 @@ class HouseCarousel extends StatelessWidget {
                     Icon(
                       Icons.location_pin,
                       color: Theme.of(context).canvasColor,
-                      size: _height * 0.02,
+                      size: _font * 0.00005,
                     ),
                     SizedBox(width: _width * 0.01),
                     Text(
                       house.location,
                       style: TextStyle(
                         color: Theme.of(context).canvasColor,
-                        fontSize: _height * 0.02,
+                        fontSize: _font * 0.00005,
                         overflow: TextOverflow.ellipsis,
                         letterSpacing: _height * 0.0015,
                       ),

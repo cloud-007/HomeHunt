@@ -20,7 +20,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 100,
-      maxHeight: 250,
+      maxHeight: 350,
     );
     final pickedImageFile = File(pickedImage.path);
     setState(() {

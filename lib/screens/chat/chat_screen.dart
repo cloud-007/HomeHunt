@@ -49,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.arrow_back_ios),
+                        icon: Icon(Icons.arrow_back),
                         color: Theme.of(context).primaryColorDark,
                         onPressed: () {
                           Navigator.pop(context);
