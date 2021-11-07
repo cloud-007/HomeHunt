@@ -121,7 +121,7 @@ class _ProfileSCreenState extends State<ProfileSCreen> {
                 _width,
               ),
               SizedBox(height: _height * 0.005),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -169,7 +169,7 @@ class _ProfileSCreenState extends State<ProfileSCreen> {
                 ),
               ),
               SizedBox(height: _height * 0.005),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -191,7 +191,7 @@ class _ProfileSCreenState extends State<ProfileSCreen> {
                 ),
               ),
               SizedBox(height: _height * 0.005),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -213,7 +213,7 @@ class _ProfileSCreenState extends State<ProfileSCreen> {
                 ),
               ),
               SizedBox(height: _height * 0.01),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   FirebaseAuth.instance.signOut();
                   Navigator.pushReplacement(

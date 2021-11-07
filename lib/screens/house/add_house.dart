@@ -142,7 +142,7 @@ class _AddHouseState extends State<AddHouse> {
   }
 
   Widget _createTextField(String name) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
@@ -525,7 +525,7 @@ class _AddHouseState extends State<AddHouse> {
                                   ),
                                 // SizedBox(width: _width * 0.02),
                                 if (index != 0)
-                                  GestureDetector(
+                                  InkWell(
                                     onTap: () {
                                       setState(() {
                                         _imageTotal.remove(_imageTotal[index]);

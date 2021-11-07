@@ -102,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final _font = _height * _width;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
+      //floatingActionButton: Icon(Icons.add, ),
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: _width * 0.03, vertical: _height * 0.01),
@@ -157,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               print(FirebaseAuth.instance.currentUser.uid);
                               print('Hello there! No new notifications!');
@@ -241,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         itemCount: _buildList.length,
                         itemBuilder: (context, index) {
-                          return GestureDetector(
+                          return InkWell(
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;

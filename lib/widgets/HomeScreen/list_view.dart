@@ -64,7 +64,7 @@ class _HomeScreenListViewState extends State<HomeScreenListView> {
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: chatDocs.length,
-                    itemBuilder: (ctx, index) => GestureDetector(
+                    itemBuilder: (ctx, index) => InkWell(
                       onTap: () async {
                         setState(() {
                           isLoading = true;

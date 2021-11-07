@@ -60,7 +60,7 @@ class _AllChatScreenState extends State<AllChatScreen> {
                 return ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: chatDocs.length,
-                  itemBuilder: (ctx, index) => GestureDetector(
+                  itemBuilder: (ctx, index) => InkWell(
                     onTap: () {
                       bool status = FirebaseAuth.instance.currentUser.uid
                               .toString()

@@ -413,7 +413,7 @@ class _HouseDetailState extends State<HouseDetail> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    GestureDetector(
+                                    InkWell(
                                       onTap: () async {
                                         print('Owner has been notified');
                                         ScaffoldMessenger.of(context)
@@ -470,7 +470,7 @@ class _HouseDetailState extends State<HouseDetail> {
                                     ),
                                     Hero(
                                       tag: 'chat',
-                                      child: GestureDetector(
+                                      child: InkWell(
                                         onTap: () async {
                                           setState(() {
                                             isLoading = true;
@@ -635,7 +635,7 @@ class _HouseDetailState extends State<HouseDetail> {
                                         ),
                                       ),
                                     ),
-                                    GestureDetector(
+                                    InkWell(
                                       onTap: () {
                                         if (widget.userid ==
                                             FirebaseAuth

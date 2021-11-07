@@ -77,7 +77,7 @@ class _MyInfoState extends State<MyInfo> {
                       },
                     ),
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       setState(() {
                         isEditable = !isEditable;

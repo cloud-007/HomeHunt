@@ -32,13 +32,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
           ),
           backgroundColor: Theme.of(context).backgroundColor,
-          leading: GestureDetector(
+          leading: InkWell(
               onTap: () {
                 Navigator.of(context).pop();
               },
               child: Icon(Icons.arrow_back)),
           actions: [
-            GestureDetector(
+            InkWell(
               onTap: () {
                 setState(() async {
                   CollectionReference deletenotification = FirebaseFirestore
@@ -113,11 +113,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   itemCount: chatDocs.length,
                   itemBuilder: (ctx, index) =>
                       NoificationBubble(chatDocs[index]),
-
-                  /*Text(chatDocs[index]
-                          ['username'] +
-                      ' has requested to rent ' +
-                      chatDocs[index]['housename']),*/
                 );
               }
             },

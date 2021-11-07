@@ -58,7 +58,7 @@ class _MyListingState extends State<MyListing> {
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 itemCount: chatDocs.length,
-                itemBuilder: (ctx, index) => GestureDetector(
+                itemBuilder: (ctx, index) => InkWell(
                   onTap: () {
                     // print(list[index].homeName);
                     Navigator.push(

@@ -31,29 +31,32 @@ class _UserImagePickerState extends State<UserImagePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CircleAvatar(
-          radius: 40,
-          backgroundColor: Colors.grey,
-          backgroundImage: _pickedImage != null
-              ? FileImage(_pickedImage)
-              : AssetImage('assets/images/defaultProfile.jpg'),
-        ),
-        TextButton.icon(
-          onPressed: _pickImage,
-          icon: Icon(
-            Icons.image,
-            color: Theme.of(context).primaryColorDark,
+    return InkWell(
+      onTap: _pickImage,
+      child: Column(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: Colors.grey,
+            backgroundImage: _pickedImage != null
+                ? FileImage(_pickedImage)
+                : AssetImage('assets/images/defaultProfile.jpg'),
           ),
-          label: Text(
-            'Add Profile',
-            style: TextStyle(
+          TextButton.icon(
+            onPressed: _pickImage,
+            icon: Icon(
+              Icons.image,
               color: Theme.of(context).primaryColorDark,
             ),
+            label: Text(
+              'Add Profile',
+              style: TextStyle(
+                color: Theme.of(context).primaryColorDark,
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

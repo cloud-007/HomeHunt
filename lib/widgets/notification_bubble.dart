@@ -17,6 +17,8 @@ class _NoificationBubbleState extends State<NoificationBubble> {
     CollectionReference delete =
         FirebaseFirestore.instance.collection('notification');
     await delete
+        .doc('3CxlzQHlP2BkxLIBDIur')
+        .collection(FirebaseAuth.instance.currentUser.uid.toString().trim())
         .doc(widget.chatDocs['houseid'])
         .delete()
         .then((value) => null)
@@ -27,8 +29,29 @@ class _NoificationBubbleState extends State<NoificationBubble> {
     print(widget.chatDocs['houseid']);
     print(widget.chatDocs['fromuid']);
     print(widget.chatDocs['requested']);
+
     await FirebaseFirestore.instance
         .collection('notification')
+        .doc('3CxlzQHlP2BkxLIBDIur')
+        .collection(widget.chatDocs['fromuid'])
+        .doc(widget.chatDocs['houseid'])
+        .set({
+      'fromuid': FirebaseAuth.instance.currentUser.uid.toString().trim(),
+      'touid': widget.chatDocs['fromuid'],
+      'houseid': widget.chatDocs['houseid'],
+      'housename': widget.chatDocs['housename'],
+      'username':
+          FirebaseAuth.instance.currentUser.displayName.toString().trim(),
+      'time': Timestamp.now(),
+      'requested': false,
+    });
+
+    _deleteNotification();
+
+    /*await FirebaseFirestore.instance
+        .collection('notification')
+        .doc('3CxlzQHlP2BkxLIBDIur')
+        .collection(FirebaseAuth.instance.currentUser.uid.toString().trim())
         .doc(widget.chatDocs['houseid'])
         .update({
       'fromuid': FirebaseAuth.instance.currentUser.uid.toString().trim(),
@@ -37,7 +60,7 @@ class _NoificationBubbleState extends State<NoificationBubble> {
           FirebaseAuth.instance.currentUser.displayName.toString().trim(),
       'time': Timestamp.now(),
       'requested': false,
-    });
+    });*/
     CollectionReference deleteHouse =
         FirebaseFirestore.instance.collection('houses');
     await deleteHouse
@@ -53,7 +76,7 @@ class _NoificationBubbleState extends State<NoificationBubble> {
     final _width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
-        GestureDetector(
+        InkWell(
           onTap: () {
             if (widget.chatDocs['requested'])
               setState(() {
@@ -90,7 +113,7 @@ class _NoificationBubbleState extends State<NoificationBubble> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: _width * 0.02),
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {
                         setState(() {
                           _deleteNotification();
@@ -200,17 +223,9 @@ class _NoificationBubbleState extends State<NoificationBubble> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                duration: Duration(seconds: 1),
-                                content: Text('House confirmed!'),
-                                backgroundColor: Colors.green,
-                              ),
-                            );
+                            _updateNotification();
                             setState(
                               () {
-                                _updateNotification();
                                 isWarning = false;
                               },
                             );

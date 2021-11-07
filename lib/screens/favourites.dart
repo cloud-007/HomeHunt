@@ -70,7 +70,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: _width * 0.025,
                             vertical: _height * 0.005),
-                        child: GestureDetector(
+                        child: InkWell(
                           onTap: () async {
                             setState(() {
                               isLoading = true;

@@ -233,7 +233,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -309,7 +309,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute<void>(
                           builder: (BuildContext context) => RegisterScreen(),
